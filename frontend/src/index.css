@@ -16,3 +16,13 @@ code {
   margin: 10%;
   width: 50%;
 }
+
+.dropdown-menu {
+  height: auto;
+  max-height: 400px;
+  overflow-x: hidden;
+}
+
+.btn {
+  margin: 10px;
+}
