@@ -15,6 +15,9 @@ const Main = (props) => {
     {
       title: 'Home',
       body: <React.Fragment>
+        <Row className='justify-content-center'>
+          Enter weight for { dateUtil.formatAsString(new Date(`${month} ${day}, ${year}`)) }.
+        </Row>
         <DateSelector
           date={date}
           onChangeDay={setDay}

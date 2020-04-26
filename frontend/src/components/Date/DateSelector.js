@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import Dropdown from './Dropdown';
 
 const DateSelector = (props) => {
-  const { date } = props;
+  const { date, onChangeDay, onChangeMonth, onChangeYear } = props;
 
   const days = dateUtil.days(date);
   const months = dateUtil.months();
@@ -13,21 +13,21 @@ const DateSelector = (props) => {
   return ( 
     <Container className='dateSelector'>
       <Row className='justify-content-center'>
-        Enter weight for { dateUtil.formatAsString(date) }.
-      </Row>
-      <Row className='justify-content-center'>
         <Dropdown
           header='Month'
           startValue={dateUtil.getMonthAsStr(date)}
-          items={months}/>
+          items={months}
+          onClick={onChangeMonth}/>
         <Dropdown
           header='Day'
           startValue={dateUtil.getDay(date)}
-          items={days}/>
+          items={days}
+          onClick={onChangeDay}/>
         <Dropdown
           header='Year'
           startValue={dateUtil.getYear(date)}
-          items={years}/>
+          items={years}
+          onClick={onChangeYear}/>
       </Row>
     </Container>
   )
