@@ -18,9 +18,9 @@ const _year = yr => {
 };
 
 const _suffix = day => {
-  if (day in [1, 21, 31]) return 'st';
-  if (day in [2, 22]) return 'nd';
-  if (day in [3, 23]) return 'rd';
+  if ([1, 21, 31].includes(day)) return 'st';
+  if ([2, 22].includes(day)) return 'nd';
+  if ([3, 23].includes(day)) return 'rd';
   else return 'th';
 };
 
@@ -37,7 +37,7 @@ export default {
     return date.getDate();
   },
   getMonth: date => {
-    return date.getMonth();
+    return date.getMonth() + 1;
   },
   getMonthAsStr: date => {
     return _monthAsStr(date.getMonth());
