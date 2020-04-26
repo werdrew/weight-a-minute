@@ -5,7 +5,7 @@ const months = [
 
 const _monthAsStr = idx => {
   try {
-    return months[idx - 1];
+    return months[idx];
   }
   catch (error) {
     console.log(`Error getting month: ${error}`);
