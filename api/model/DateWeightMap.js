@@ -1,12 +1,19 @@
 const sqlite3 = require('sqlite3');
 
+const CREATE_TABLE = `CREATE TABLE "date_weight_map" (
+	"date"	INTEGER NOT NULL UNIQUE,
+	"weight"	INTEGER NOT NULL,
+	PRIMARY KEY("date")
+);`
+
 class DateWeightMap {
   constructor() {
-    const db = new sqlite3.Database('../../db/db-local.db');
+    this.db = new sqlite3.Database('db.local');
+    this.db.run(CREATE_TABLE);
   }
 
   getWeight() {
-
+    
   }
 
   addWeight() {
@@ -18,4 +25,4 @@ class DateWeightMap {
   }
 }
 
-module.exports = DateWeightMap;
+module.exports = new DateWeightMap();
