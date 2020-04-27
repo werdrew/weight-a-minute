@@ -19,7 +19,7 @@ const CustomDropdown = props => {
 
   return ( 
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-      <DropdownToggle>
+      <DropdownToggle color="primary">
         {value}
       </DropdownToggle>
       <DropdownMenu>

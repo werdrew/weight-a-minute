@@ -28,8 +28,8 @@ const CardWithTabs = (props) => {
 
     panes.push(
       <TabPane tabId={index}>
-        <Row>
-          <CardText className="p-3">
+        <Row className="justify-content-center">
+          <CardText>
             {tab.body}
           </CardText>
         </Row>

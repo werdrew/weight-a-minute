@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Row } from 'reactstrap';
+import { 
+  Button, Col, Form, 
+  FormGroup, Input, Label, Row 
+} from 'reactstrap';
 import CardWithTabs from './CardWithTabs/CardWithTabs';
 import DateSelector from './Date/DateSelector';
 import dateUtil from './Date/dateUtil';
+
+const constructDate = ({ day, month, year }) => new Date(`${month} ${day}, ${year}`);
+
+const isValidWeight = weight => /^\d+(\.\d+)?$/.test(weight);
 
 const Main = (props) => {
   const { date } = props;
@@ -11,29 +18,50 @@ const Main = (props) => {
   const [month, setMonth] = useState(dateUtil.getMonth(date));
   const [year, setYear] = useState(dateUtil.getYear(date));
 
+  const [weight, setWeight] = useState();
+
+  const formText = `Enter weight for ${ dateUtil.formatAsString(constructDate({ day, month, year })) }.`;
+
+  const homeForm =
+    <Form>
+      <FormGroup>
+        <Label for="weight">{formText}</Label>
+        <Input 
+          id="weight" 
+          placeholder={weight}
+          onChange={e => setWeight(e.target.value)}
+          valid={isValidWeight(weight)}
+          invalid={!isValidWeight(weight)}/>
+      </FormGroup>
+    </Form>
+
   const tabs = [
     {
       title: 'Home',
-      body: <React.Fragment>
-        <Row className='justify-content-center'>
-          Enter weight for { dateUtil.formatAsString(new Date(`${month} ${day}, ${year}`)) }.
-        </Row>
+      body: <Col>
         <DateSelector
           date={date}
           onChangeDay={setDay}
           onChangeMonth={setMonth}
           onChangeYear={setYear}/>
+        {homeForm}
         <Row className='btn-row justify-content-center'>
-          <Button>Submit</Button>
-          <Button>Update</Button>
+          <Button 
+            outline 
+            color="primary"
+            disabled={!isValidWeight(weight)}>Submit</Button>
+          <Button 
+            outline 
+            color="primary"
+            disabled={!isValidWeight(weight)}>Update</Button>
         </Row>
-      </React.Fragment>
+      </Col>
     },
     {
       title: 'Statistics',
-      body: <React.Fragment>
+      body: <Col>
         Statistics placeholder.
-      </React.Fragment>
+      </Col>
     }
   ]  
 
