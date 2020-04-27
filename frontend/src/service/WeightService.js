@@ -3,13 +3,14 @@ import axios from 'axios';
 const BASE_URL = 'http://localhost:5601';
 
 export default {
-  getWeight: (year, month, day) => {
+  getWeight: async (year, month, day) => {
     const response = axios.get(BASE_URL + `/${year}/${month}/${day}`)
       .then(res => res)
       .catch(err => console.log(err));
     return response.data;
   },
-  addWeight: (year, month, day, weight) => {
+  addWeight: async (year, month, day, weight) => {
+    console.log(year, month, day, weight);
     const response = axios.post(BASE_URL + `/${year}/${month}/${day}`, {
         weight
       })
@@ -17,7 +18,7 @@ export default {
       .catch(err => console.log(err));
     return response.data;
   },
-  updateWeight: (year, month, day, weight) => {
+  updateWeight: async (year, month, day, weight) => {
     const response = axios.put(BASE_URL + `/${year}/${month}/${day}`, {
         weight
       })

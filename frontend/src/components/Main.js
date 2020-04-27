@@ -6,6 +6,7 @@ import {
 import CardWithTabs from './CardWithTabs/CardWithTabs';
 import DateSelector from './Date/DateSelector';
 import dateUtil from './Date/dateUtil';
+import WeightService from '../service/WeightService';
 
 const constructDate = ({ day, month, year }) => new Date(`${month} ${day}, ${year}`);
 
@@ -18,7 +19,7 @@ const Main = (props) => {
   const [month, setMonth] = useState(dateUtil.getMonth(date));
   const [year, setYear] = useState(dateUtil.getYear(date));
 
-  const [weight, setWeight] = useState();
+  const [weight, setWeight] = useState(-1);
 
   const formText = `Enter weight for ${ dateUtil.formatAsString(constructDate({ day, month, year })) }.`;
 
@@ -28,7 +29,6 @@ const Main = (props) => {
         <Label for="weight">{formText}</Label>
         <Input 
           id="weight" 
-          placeholder={weight}
           onChange={e => setWeight(e.target.value)}
           valid={isValidWeight(weight)}
           invalid={!isValidWeight(weight)}/>
@@ -48,10 +48,16 @@ const Main = (props) => {
         <Row className='btn-row justify-content-center'>
           <Button 
             color="primary"
-            disabled={!isValidWeight(weight)}>Submit</Button>
+            disabled={!isValidWeight(weight)}
+            onClick={() => WeightService.addWeight(year, month, day, weight)}>
+              Submit
+          </Button>
           <Button 
             color="primary"
-            disabled={!isValidWeight(weight)}>Update</Button>
+            disabled={!isValidWeight(weight)}
+            onClick={() => WeightService.updateWeight(year, month, day, weight)}>
+              Update
+          </Button>
         </Row>
       </Col>
     },

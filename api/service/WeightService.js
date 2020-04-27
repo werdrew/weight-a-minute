@@ -1,16 +1,24 @@
 const DateWeightMap = require('../model/DateWeightMap');
 
 class WeightService {
-  getWeight() {
+  async getWeight({ year, month, date }) {
 
   }
 
-  addWeight() {
-
+  async addWeight({ year, month, day, weight }) {
+    try {
+      return await DateWeightMap.addWeight({ year, month, day, weight });
+    } catch (err) {
+      throw err;
+    }
   }
 
-  updateWeight() {
-
+  async updateWeight({ year, month, day, weight }) {
+    try {
+      return await DateWeightMap.updateWeight({ year, month, day, weight });
+    } catch (err) {
+      throw err;
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3');
 
-const CREATE_TABLE = `CREATE TABLE "date_weight_map" (
+const CREATE_TABLE = `CREATE TABLE IF NOT EXISTS "date_weight_map" (
 	"year"	INTEGER NOT NULL,
 	"month"	INTEGER NOT NULL,
 	"day"	INTEGER NOT NULL,
@@ -14,16 +14,51 @@ class DateWeightMap {
     this.db.run(CREATE_TABLE);
   }
 
-  getWeight() {
-    
+  async getWeight({ year, month, day }) {
+    return new Promise((resolve, reject) => {
+      this.db.run(`SELECT * FROM date_weight_map
+      WHERE year = ?
+      AND month = ?
+      AND day = ?`, [
+        year,
+        month,
+        day
+      ], err => {
+        if (err) reject(err)
+        else resolve();
+      });
+    });
   }
 
-  addWeight() {
-
+  async addWeight({ year, month, day, weight }) {
+    return new Promise((resolve, reject) => {
+      this.db.run(`INSERT INTO date_weight_map (year, month, day, weight) 
+      VALUES (?, ?, ?, ?)`, [
+        year,
+        month,
+        day,
+        weight
+      ], err => {
+        if (err) reject(err)
+        else resolve();
+      });
+    });
   }
 
-  updateWeight() {
-
+  async updateWeight({ year, month, day, weight }) {
+    return new Promise((resolve, reject) => {
+      this.db.run(`UPDATE date_weight_map
+      SET weight = ?
+      WHERE year = ? AND month = ? AND day = ?`, [
+        weight,
+        year,
+        month,
+        day,
+      ], err => {
+        if (err) reject(err)
+        else resolve();
+      });
+    });
   }
 }
 
