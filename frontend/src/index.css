@@ -30,3 +30,7 @@ code {
 .card-text {
   padding-top: 20px;
 }
+
+label {
+  margin-top: 10px;
+}

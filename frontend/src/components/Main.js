@@ -47,11 +47,9 @@ const Main = (props) => {
         {homeForm}
         <Row className='btn-row justify-content-center'>
           <Button 
-            outline 
             color="primary"
             disabled={!isValidWeight(weight)}>Submit</Button>
           <Button 
-            outline 
             color="primary"
             disabled={!isValidWeight(weight)}>Update</Button>
         </Row>
