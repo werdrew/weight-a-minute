@@ -12,6 +12,7 @@ class WeightController {
     const { year, month, day } = req.params;
     try {
       const response = await WeightService.getWeight({ year, month, day });
+      console.log(response);
       res.send(response);
     } catch (err) {
       console.error(err);

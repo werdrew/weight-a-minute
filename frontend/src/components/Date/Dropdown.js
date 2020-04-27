@@ -12,7 +12,6 @@ const CustomDropdown = props => {
 
   const handleClick = e => {
     const value = e.currentTarget.textContent;
-    console.log(value);
     setValue(value);
     onClick(value);
   }

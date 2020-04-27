@@ -16,16 +16,16 @@ class DateWeightMap {
 
   async getWeight({ year, month, day }) {
     return new Promise((resolve, reject) => {
-      this.db.run(`SELECT * FROM date_weight_map
+      this.db.each(`SELECT weight FROM date_weight_map
       WHERE year = ?
       AND month = ?
       AND day = ?`, [
         year,
         month,
         day
-      ], err => {
+      ], (err, row) => {
         if (err) reject(err)
-        else resolve();
+        else resolve(row || { data: { weight: -1 }});
       });
     });
   }
