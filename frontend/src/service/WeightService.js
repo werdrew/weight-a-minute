@@ -25,4 +25,10 @@ export default {
       .catch(err => { throw err; });
     return response.data;  
   },
+  deleteWeight: async (year, month, day, weight) => {
+    const response = await axios.delete(BASE_URL + `/${year}/${month}/${day}`)
+      .then(res => { return res; })
+      .catch(err => { throw err; });
+    return response.data;  
+  },
 };

@@ -24,6 +24,14 @@ class WeightService {
       throw err;
     }
   }
+
+  async deleteWeight({ year, month, day }) {
+    try {
+      return await DateWeightMap.deleteWeight({ year, month, day });
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = new WeightService();

@@ -6,6 +6,7 @@ class WeightController {
     app.get('/:year/:month/:day', this.getWeight);
     app.post('/:year/:month/:day', this.addWeight);
     app.put('/:year/:month/:day/', this.updateWeight);
+    app.delete('/:year/:month/:day/', this.deleteWeight);
   }
 
   async getWeight(req, res) {
@@ -36,6 +37,17 @@ class WeightController {
     const { weight } = req.body;
     try {
       const response = await WeightService.updateWeight({ year, month, day, weight });
+      res.send(response);
+    } catch (err) {
+      console.error(err);
+      res.send(err);
+    }
+  }
+
+  async deleteWeight(req, res) {
+    const { year, month, day } = req.params;
+    try {
+      const response = await WeightService.deleteWeight({ year, month, day });
       res.send(response);
     } catch (err) {
       console.error(err);

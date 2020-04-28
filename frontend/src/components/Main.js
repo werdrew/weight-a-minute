@@ -69,6 +69,14 @@ const Main = (props) => {
     else setMsg('Success!');
   };
 
+  const onDelete = async ({ year, month, day, weight }) => {
+    const response = await WeightService.deleteWeight(year, month, day, weight);
+    console.log(response);
+    const code = response.code;
+    if (code) handleError(code, setMsg);
+    else setMsg('Success!');
+  };
+
   const onChangeDay = (e) => {
     setWeight(-1);
     setDay(e);
@@ -120,10 +128,15 @@ const Main = (props) => {
               Submit
           </Button>
           <Button 
-            color="primary"
+            color="warning"
             disabled={!isValidWeight(weight)}
             onClick={() => onUpdate({ year, month, day, weight })}>
               Update
+          </Button>
+          <Button 
+            color="danger"
+            onClick={() => onDelete({ year, month, day, weight })}>
+              Delete
           </Button>
         </Row>
       </Col>
