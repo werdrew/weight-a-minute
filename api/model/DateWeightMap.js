@@ -39,7 +39,6 @@ class DateWeightMap {
         day,
         weight
       ], (err, row) => {
-        console.log(err, row);
         if (err) reject(err)
         else resolve();
       });
@@ -56,7 +55,6 @@ class DateWeightMap {
         month,
         day,
       ], (err, row) => {
-        console.log(err, row);
         if (err) reject(err)
         else resolve();
       });
@@ -73,7 +71,6 @@ class DateWeightMap {
         month,
         day
       ], (err, row) => {
-        console.log(err, row);
         if (err) reject(err)
         else resolve();
       });
