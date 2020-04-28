@@ -45,11 +45,14 @@ code {
 
 .card-text {
   padding-top: 20px;
+  width: 100%;
 }
 
 img {
+  max-width: 728px;
+  width: 50%;
   margin-top: 25px;
-  margin-bottom: -25px;
+  margin-bottom: -50px;
 }
 
 label {

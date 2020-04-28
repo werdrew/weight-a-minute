@@ -9,6 +9,17 @@ export default {
       .catch(err => console.log(err));
     return response;
   },
+  getAllWeights: async (from, to) => {
+    if (!from || !to) {
+      const code = `From and to both required but got: ${from}, ${to}`;
+      console.error(code);
+      return { code };
+    }
+    const response = await axios.get(BASE_URL + `/weight?from=${from}&to=${to}`)
+      .then(res => { return res; })
+      .catch(err => console.log(err));
+    return response;
+  },
   addWeight: async (year, month, day, weight) => {
     const response = await axios.post(BASE_URL + `/${year}/${month}/${day}`, {
         weight

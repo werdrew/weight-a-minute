@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import CardWithTabs from './CardWithTabs/CardWithTabs';
 import HomeTab from './Tabs/HomeTab';
 import StatisticsTab from './Tabs/StatisticsTab';
@@ -10,11 +10,13 @@ const Main = (props) => {
   const tabs = [
     {
       title: 'Home',
-      body: <HomeTab date={date}/>
+      body: <HomeTab 
+        date={date}/>
     },
     {
       title: 'Statistics',
-      body: <StatisticsTab date={date}/>
+      body: <StatisticsTab 
+        date={date}/>
     }
   ]  
 

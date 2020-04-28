@@ -30,6 +30,24 @@ class DateWeightMap {
     });
   }
 
+  async getAllWeight({ from, to }) {
+    const [fromYear, fromMonth, fromDay] = from.split('/');
+    const [toYear, toMonth, toDay] = to.split('/');
+    return new Promise((resolve, reject) => {
+      this.db.all(`SELECT * FROM date_weight_map
+      WHERE year >= ? AND year <= ?
+      AND month >= ? AND month <= ?
+      AND day >= ? AND day <= ?;`, [
+        fromYear, toYear,
+        fromMonth, toMonth,
+        fromDay, toDay
+      ], (err, row) => {
+        if (err) reject (err);
+        else resolve(row || { data: []});
+      });
+    });
+  }
+
   async addWeight({ year, month, day, weight }) {
     return new Promise((resolve, reject) => {
       this.db.run(`INSERT INTO date_weight_map (year, month, day, weight) 

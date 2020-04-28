@@ -9,6 +9,14 @@ class WeightService {
     }
   }
 
+  async getAllWeight({ from, to }) {
+    try {
+      return await DateWeightMap.getAllWeight({ from, to });
+    } catch (err) {
+      throw err;
+    }
+  }
+
   async addWeight({ year, month, day, weight }) {
     try {
       return await DateWeightMap.addWeight({ year, month, day, weight });

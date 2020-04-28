@@ -67,5 +67,20 @@ export default {
     const numElements = currentYear - startingFrom + 1;
     const yearArr = [...Array(numElements).keys()];
     return yearArr.map(year => { return year += startingFrom });
+  },
+  getDaysAgo: (today, { n = 1 }) => {
+    const dateCopy = new Date(today);
+    dateCopy.setDate(today.getDate() - n);
+    return dateCopy;
+  },
+  getWeeksAgo: (today, { n = 1 }) => {
+    const dateCopy = new Date(today);
+    dateCopy.setDate(today.getDate() - (n * 7));
+    return dateCopy;
+  },
+  getYearsAgo: (today, { n = 1 }) => {
+    const dateCopy = new Date(today);
+    dateCopy.setDate(today.getDate() - (n * 365));
+    return dateCopy;
   }
 };
