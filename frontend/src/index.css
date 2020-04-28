@@ -31,6 +31,19 @@ code {
   padding-top: 20px;
 }
 
+img {
+  margin-top: 25px;
+  margin-bottom: -25px;
+}
+
 label {
   margin-top: 10px;
+}
+
+.successMsg {
+  color: green;
+}
+
+.errorMsg {
+  color: red;
 }

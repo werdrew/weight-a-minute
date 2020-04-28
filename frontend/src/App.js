@@ -1,18 +1,19 @@
 import React from 'react';
-import {
-  BrowserRouter
-} from 'react-router-dom';
 import Main from './components/Main';
+import Logo from './components/Logo';
+import { Container, Row, Col } from 'reactstrap';
 
 const today = new Date();
+const logoPath = "/logo_web.png";
 
 export default function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
+    <Container className="App">
+      <Row className="justify-content-center">
+        <Logo path={logoPath}/>
         <Main
           date={today}/>
-      </BrowserRouter>
-    </div>
+      </Row>
+    </Container>
   );
 };
