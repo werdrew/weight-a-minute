@@ -52,7 +52,7 @@ const Main = (props) => {
     }
 
     getWeight();
-  });
+  }, [year, month, day]);
 
   /* Change handlers */
   const onSubmit = async ({ year, month, day, weight }) => {
