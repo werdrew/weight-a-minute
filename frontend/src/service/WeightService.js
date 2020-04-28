@@ -10,12 +10,11 @@ export default {
     return response;
   },
   addWeight: async (year, month, day, weight) => {
-    console.log(year, month, day, weight);
     const response = await axios.post(BASE_URL + `/${year}/${month}/${day}`, {
         weight
       })
       .then(res => { return res; })
-      .catch(err => console.log(err));
+      .catch(err => { throw err; });
     return response.data;
   },
   updateWeight: async (year, month, day, weight) => {
@@ -23,7 +22,7 @@ export default {
         weight
       })
       .then(res => { return res; })
-      .catch(err => console.log(err));
+      .catch(err => { throw err; });
     return response.data;  
   },
 };
