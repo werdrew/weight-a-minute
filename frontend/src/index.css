@@ -12,6 +12,22 @@ code {
     monospace;
 }
 
+.App {
+  height: 100%;
+}
+
+.full-width {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.top {
+  background-color: rgba(91, 192, 222, 0.3);
+  height: 480px;
+}
+
 #Main .card {
   margin: 10%;
   width: 50%;
