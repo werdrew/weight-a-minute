@@ -6,18 +6,19 @@ import Dropdown from './Dropdown';
 const DateSelector = (props) => {
   const { date, onChangeDay, onChangeMonth, onChangeYear } = props;
 
-  const days = dateUtil.days(date);
-  const months = dateUtil.months();
-  const years = dateUtil.years(date);
+  const days = dateUtil.getDaysForDate(date);
+  const months = dateUtil.getMonths();
+  const years = dateUtil.getYearsToDate(date, { startingFrom: 2010 });
 
   return ( 
     <Container className='dateSelector'>
       <Row className='justify-content-center'>
         <Dropdown
           header='Month'
-          startValue={dateUtil.getMonthAsStr(date)}
+          startValue={dateUtil.getMonthAsStr(date.getMonth())}
           items={months}
-          onClick={onChangeMonth}/>
+          onClick={onChangeMonth}
+          valueFormatter={dateUtil.getMonthAsStr}/>
         <Dropdown
           header='Day'
           startValue={dateUtil.getDay(date)}

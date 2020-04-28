@@ -39,8 +39,11 @@ export default {
   getMonth: date => {
     return date.getMonth() + 1;
   },
-  getMonthAsStr: date => {
-    return _monthAsStr(date.getMonth());
+  getMonthAsStr: monthNum => {
+    return _monthAsStr(monthNum);
+  },
+  getMonthAsNum: monthStr => {
+    return months.indexOf(monthStr) + 1
   },
   getYear: date => {
     return _year(date.getYear());
@@ -51,17 +54,18 @@ export default {
     const year = _year(date.getYear());
     return `${month} ${day}${_suffix(day)}, ${year}`;
   },
-  days: date => {
+  getDaysForDate: date => {
     const month = _monthAsStr(date.getMonth());
     const numDays = _numDays(month, _year(date.getYear()));
-    const days = [...Array(numDays).keys()];
-    return days.map(day => { return day += 1 });
+    return [...Array(numDays).keys()].map(day => { return day += 1 });
   },
-  months: () => {
+  getMonths: () => {
     return months;
   },
-  years: (date) => {
-    const years = [...Array(date.getYear()).keys()].map(year => year++);
-    return years.map(year => year += 1900);
+  getYearsToDate: (date, { startingFrom = 1900 }) => {
+    const currentYear = _year(date.getYear());
+    const numElements = currentYear - startingFrom + 1;
+    const yearArr = [...Array(numElements).keys()];
+    return yearArr.map(year => { return year += startingFrom });
   }
 };

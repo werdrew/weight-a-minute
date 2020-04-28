@@ -52,7 +52,7 @@ const Main = (props) => {
     }
 
     getWeight();
-  }, [year, month, day]);
+  });
 
   /* Change handlers */
   const onSubmit = async ({ year, month, day, weight }) => {
@@ -76,7 +76,8 @@ const Main = (props) => {
 
   const onChangeMonth = (e) => {
     setWeight(-1);
-    setMonth(e);
+    const monthNum = dateUtil.getMonthAsNum(e);
+    setMonth(monthNum);
   }
 
   const onChangeYear = (e) => {

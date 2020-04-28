@@ -11,7 +11,7 @@ const CustomDropdown = props => {
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
   const handleClick = e => {
-    const value = e.currentTarget.textContent;
+    const value = e.target.value;
     setValue(value);
     onClick(value);
   }
@@ -26,6 +26,7 @@ const CustomDropdown = props => {
         {items.map(item => {
           return <DropdownItem 
             key={item}
+            value={item}
             onClick={e => handleClick(e)}>
               {item}
           </DropdownItem>
