@@ -20,7 +20,7 @@ const StatisticsTab = (props) => {
   const [monthTo, setMonthTo] = useState(getMonth(props.date));
   const [yearTo, setYearTo] = useState(getYear(props.date));
 
-  /* Effects */
+/* Effects */
   useEffect(() => {
     async function getData() {
       const response = await getAllWeights(
@@ -47,7 +47,8 @@ const StatisticsTab = (props) => {
   }, [dayFrom, monthFrom, yearFrom, dayTo, monthTo, yearTo]);
 
   return (   
-    <Col>
+    <>
+    <Row className="justify-content-center">
       <RangeSelector
         fromDate={ymdToDate(yearFrom, monthFrom, dayFrom)}
         toDate={ymdToDate(yearTo, monthTo, dayTo)}
@@ -57,9 +58,12 @@ const StatisticsTab = (props) => {
         onChangeDayTo={setDayTo}
         onChangeMonthTo={setMonthTo}
         onChangeYearTo={setYearTo}/>
+    </Row>
+    <Row>
       <Line
         data={data}/>
-    </Col>
+    </Row>
+    </>
   )
 };
 

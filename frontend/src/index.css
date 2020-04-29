@@ -72,10 +72,14 @@ label {
 }
 
 .successMsg {
+  padding-top: 10px;
+  margin: 0;
   color: green;
 }
 
 .errorMsg {
+  padding-top: 10px;
+  margin: 0;
   color: red;
 }
 
@@ -91,4 +95,12 @@ label {
   padding: 0;
   margin-bottom: 10px;
   width: 50%;
+}
+
+p {
+  margin: 20px;
+}
+
+#weight {
+  width: 60%;
 }

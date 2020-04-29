@@ -13,7 +13,7 @@ const DateSelector = (props) => {
   return ( 
     <Container className='dateSelector'>
       <Row className='justify-content-around'>
-        <p className='dropdown-label'>{props.label}</p>
+        {label && <p className='dropdown-label'>{label}</p>}
         <Row className='justify-content-center'>
           <Dropdown
             header='Month'

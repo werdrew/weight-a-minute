@@ -88,28 +88,27 @@ const HomeTab = (props) => {
   }
 
   /* Render */
-  const homeForm =
-    <Form>
-      <FormGroup>
-        <Input 
-          id="weight"
-          value={weight === -1 ? '' : weight}
-          onChange={e => setWeight(e.target.value)}
-          valid={isValidWeight(weight)}
-          invalid={!isValidWeight(weight)}/>
-      </FormGroup>
-    </Form>
-    
   return (
-    <Col>
-      <DateSelector
-        label='Enter weight for:'
-        date={props.date}
-        onChangeDay={onChangeDay}
-        onChangeMonth={onChangeMonth}
-        onChangeYear={onChangeYear}/>
-      {homeForm}
-      {msg && <p className={msg === 'Success!' ? 'successMsg' : 'errorMsg'}>{msg}</p>}
+    <>
+      <Row className="justify-content-center">
+        <DateSelector
+          label='Enter weight for:'
+          date={props.date}
+          onChangeDay={onChangeDay}
+          onChangeMonth={onChangeMonth}
+          onChangeYear={onChangeYear}/>
+      </Row>
+      <Row className="justify-content-center">
+        <Input 
+            id="weight"
+            value={weight === -1 ? '' : weight}
+            onChange={e => setWeight(e.target.value)}
+            valid={isValidWeight(weight)}
+            invalid={!isValidWeight(weight)}/>
+      </Row>
+      <Row className="justify-content-center">
+        {msg && <p className={msg === 'Success!' ? 'successMsg' : 'errorMsg'}>{msg}</p>}
+      </Row>
       <Row className='btn-row justify-content-center'>
         <Button 
           color="primary"
@@ -129,7 +128,7 @@ const HomeTab = (props) => {
             Delete
         </Button>
       </Row>
-    </Col>
+    </>
   )
 };
 
