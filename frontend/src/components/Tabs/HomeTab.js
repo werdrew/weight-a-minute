@@ -27,7 +27,7 @@ const HomeTab = (props) => {
     const [msg, setMsg] = useState('');
   
   
-    /* Other hooks */
+    /* Effects */
     useEffect(() => {
       function setState(response) {
         setWeight(response.data.weight);
@@ -46,6 +46,7 @@ const HomeTab = (props) => {
       initWeight();
     }, [year, month, day]);
   
+  /* Handlers */
   const onSubmit = async ({ year, month, day, weight }) => {
     const response = await addWeight(year, month, day, weight);
     const code = response.code;

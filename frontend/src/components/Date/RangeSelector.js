@@ -7,9 +7,6 @@ const RangeSelector = (props) => {
   const { fromDate, toDate, onChangeDayFrom, onChangeMonthFrom,
     onChangeYearFrom, onChangeDayTo, onChangeMonthTo, onChangeYearTo } = props;
 
-  console.log(fromDate);
-  console.log(toDate);
-
   return (
     <Container className=''>
       <DateSelector

@@ -94,8 +94,12 @@ const getYearsAgo = (today, { n = 1 }) => {
   return dateCopy;
 };
 
+const ymdToDate = (year, month, day) => {
+  return new Date(year, month - 1, day);
+};
+
 export {
   getDay, getMonth, getMonthAsStr, getMonthAsNum, getYear,
   formatAsString, getDaysForDate, getMonths, getYearsToDate,
-  getDaysAgo, getWeeksAgo, getYearsAgo
+  getDaysAgo, getWeeksAgo, getYearsAgo, ymdToDate
 };
