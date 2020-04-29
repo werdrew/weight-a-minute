@@ -25,7 +25,7 @@ code {
 
 .top {
   background-color: rgba(91, 192, 222, 0.3);
-  height: 480px;
+  height: 100vh;
 }
 
 #Main .card {
@@ -48,6 +48,10 @@ code {
   width: 100%;
 }
 
+.form-group {
+  margin-top: 1rem;
+}
+
 img {
   max-width: 728px;
   width: 50%;
@@ -59,10 +63,29 @@ label {
   margin-top: 10px;
 }
 
+.dropdown-label {
+  margin: 0;
+  margin-right: 20px;
+  line-height: 60px;
+}
+
 .successMsg {
   color: green;
 }
 
 .errorMsg {
   color: red;
+}
+
+.row {
+  margin: 0;
+}
+
+.dateSelector {
+  border-left: 5px solid rgba(237, 201, 175, 0.25);
+  border-bottom: 5px solid rgba(237, 201, 175, 0.25);
+  border-radius: 20px;
+  background-color: rgba(91, 192, 222, 0.1);
+  padding: 0;
+  width: 50%;
 }

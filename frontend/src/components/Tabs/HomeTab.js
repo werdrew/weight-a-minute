@@ -64,10 +64,12 @@ const HomeTab = (props) => {
 
   const onDelete = async ({ year, month, day, weight }) => {
     const response = await WeightService.deleteWeight(year, month, day, weight);
-    console.log(response);
     const code = response.code;
     if (code) handleError(code, setMsg);
-    else setMsg('Success!');
+    else {
+      setMsg('Success!');
+      setWeight(-1);
+    }
   };
 
   const onChangeDay = (e) => {
@@ -87,12 +89,9 @@ const HomeTab = (props) => {
   }
 
   /* Render */
-  const formText = `Enter weight for ${ dateUtil.formatAsString(constructDate({ day, month, year })) }.`;
-
   const homeForm =
     <Form>
       <FormGroup>
-        <Label for="weight">{formText}</Label>
         <Input 
           id="weight"
           value={weight === -1 ? '' : weight}
@@ -105,6 +104,7 @@ const HomeTab = (props) => {
   return (
     <Col>
       <DateSelector
+        label='Enter weight for:'
         date={props.date}
         onChangeDay={onChangeDay}
         onChangeMonth={onChangeMonth}

@@ -8,7 +8,7 @@ const logoPath = "/logo_web.png";
 
 export default function App() {
   return (    
-    <Container fluid className="App p-0 flex-column">
+    <Container fluid className="App p-0">
       <div className="full-width top">
         <Row className="justify-content-center">
           <Logo path={logoPath}/>
@@ -16,6 +16,7 @@ export default function App() {
             date={today}/>
         </Row>
       </div>
+      <div className="full-width bottom"></div>
     </Container>
   );
 };
