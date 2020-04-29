@@ -41,7 +41,7 @@ const StatisticsTab = (props) => {
       const data = { labels, datasets: [{ 
         label: 'Weights',
         fill: false,
-        borderColor: "#6bd486",
+        borderColor: "#7EDE5B",
         pointRadius: 1,
         data: weights
       }]};
