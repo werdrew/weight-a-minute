@@ -54,9 +54,11 @@ code {
 
 img {
   max-width: 728px;
+  max-height: 90px;
   width: 50%;
   margin-top: 25px;
-  margin-bottom: -50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 label {

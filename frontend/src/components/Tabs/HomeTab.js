@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {
   Button, Col, Form,
-  FormGroup, Input, Label, Row
+  FormGroup, Input, Row
 } from 'reactstrap';
 import DateSelector from '../Date/DateSelector';
-import dateUtil from '../Date/dateUtil';
+import { getDay, getMonth, getYear, getMonthAsNum } from '../Date/dateUtil';
 import { getWeight, addWeight, updateWeight, deleteWeight } from '../../service/WeightService';
-
-const constructDate = ({ day, month, year }) => new Date(`${month} ${day}, ${year}`);
 
 const isValidWeight = weight => /^\d+(\.\d+)?$/.test(weight);
 
@@ -22,9 +20,9 @@ const handleError = (code, setMsg) => {
 
 const HomeTab = (props) => {
     /* State */
-    const [day, setDay] = useState(dateUtil.getDay(props.date));
-    const [month, setMonth] = useState(dateUtil.getMonth(props.date));
-    const [year, setYear] = useState(dateUtil.getYear(props.date));
+    const [day, setDay] = useState(getDay(props.date));
+    const [month, setMonth] = useState(getMonth(props.date));
+    const [year, setYear] = useState(getYear(props.date));
     const [weight, setWeight] = useState(-1);
     const [msg, setMsg] = useState('');
   
@@ -79,7 +77,7 @@ const HomeTab = (props) => {
 
   const onChangeMonth = (e) => {
     setWeight(-1);
-    const monthNum = dateUtil.getMonthAsNum(e);
+    const monthNum = getMonthAsNum(e);
     setMonth(monthNum);
   }
 

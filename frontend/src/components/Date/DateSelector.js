@@ -1,14 +1,14 @@
 import React from 'react';
-import dateUtil from './dateUtil';
+import { getDay, getDaysForDate, getMonths, getYear, getYearsToDate, getMonthAsStr } from './dateUtil';
 import { Container, Row } from 'reactstrap';
 import Dropdown from './Dropdown';
 
 const DateSelector = (props) => {
   const { label, date, onChangeDay, onChangeMonth, onChangeYear } = props;
 
-  const days = dateUtil.getDaysForDate(date);
-  const months = dateUtil.getMonths();
-  const years = dateUtil.getYearsToDate(date, { startingFrom: 2010 });
+  const days = getDaysForDate(date);
+  const months = getMonths();
+  const years = getYearsToDate(date, { startingFrom: 2010 });
 
   return ( 
     <Container className='dateSelector'>
@@ -17,18 +17,18 @@ const DateSelector = (props) => {
         <Row className='justify-content-center'>
           <Dropdown
             header='Month'
-            startValue={dateUtil.getMonthAsStr(date.getMonth())}
+            startValue={getMonthAsStr(date.getMonth())}
             items={months}
             onClick={onChangeMonth}
-            valueFormatter={dateUtil.getMonthAsStr}/>
+            valueFormatter={getMonthAsStr}/>
           <Dropdown
             header='Day'
-            startValue={dateUtil.getDay(date)}
+            startValue={getDay(date)}
             items={days}
             onClick={onChangeDay}/>
           <Dropdown
             header='Year'
-            startValue={dateUtil.getYear(date)}
+            startValue={getYear(date)}
             items={years}
             onClick={onChangeYear}/>
         </Row>
