@@ -5,7 +5,7 @@ import {
 import dateUtil from '../Date/dateUtil';
 import Line from '../DataViz/Line'
 import RangeSelector from '../Date/RangeSelector';
-import WeightService from '../../service/WeightService';
+import { getAllWeights } from '../../service/WeightService';
 
 const StatisticsTab = (props) => {
   const [data, setData] = useState({});
@@ -28,7 +28,7 @@ const StatisticsTab = (props) => {
     async function getData() {
       const oneWeekAgo = dateUtil.getWeeksAgo(props.date, { n: 1 });
       setInitialState(oneWeekAgo);
-      const response = await WeightService.getAllWeights(
+      const response = await getAllWeights(
         `${dateUtil.getYear(oneWeekAgo)}/${dateUtil.getMonth(oneWeekAgo)}/${dateUtil.getDay(oneWeekAgo)}`,
         `${dateUtil.getYear(props.date)}/${dateUtil.getMonth(props.date)}/${dateUtil.getDay(props.date)}`
       );

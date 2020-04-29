@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 import DateSelector from '../Date/DateSelector';
 import dateUtil from '../Date/dateUtil';
-import WeightService from '../../service/WeightService';
+import { getWeight, addWeight, updateWeight, deleteWeight } from '../../service/WeightService';
 
 const constructDate = ({ day, month, year }) => new Date(`${month} ${day}, ${year}`);
 
@@ -36,34 +36,34 @@ const HomeTab = (props) => {
         setMsg('');
       }
   
-      async function getWeight() {
+      async function initWeight() {
         try {
-          const response = await WeightService.getWeight(year, month, day);
+          const response = await getWeight(year, month, day);
           setState(response);
         } catch (error) {
           console.error(error);
         }
       }
   
-      getWeight();
+      initWeight();
     }, [year, month, day]);
   
   const onSubmit = async ({ year, month, day, weight }) => {
-    const response = await WeightService.addWeight(year, month, day, weight);
+    const response = await addWeight(year, month, day, weight);
     const code = response.code;
     if (code) handleError(code, setMsg);
     else setMsg('Success!');
   };
 
   const onUpdate = async ({ year, month, day, weight }) => {
-    const response = await WeightService.updateWeight(year, month, day, weight);
+    const response = await updateWeight(year, month, day, weight);
     const code = response.code;
     if (code) handleError(code, setMsg);
     else setMsg('Success!');
   };
 
   const onDelete = async ({ year, month, day, weight }) => {
-    const response = await WeightService.deleteWeight(year, month, day, weight);
+    const response = await deleteWeight(year, month, day, weight);
     const code = response.code;
     if (code) handleError(code, setMsg);
     else {
