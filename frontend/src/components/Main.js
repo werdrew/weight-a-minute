@@ -1,7 +1,7 @@
 import React from 'react';
 import CardWithTabs from './CardWithTabs/CardWithTabs';
 import HomeTab from './Tabs/HomeTab';
-import StatisticsTab from './Tabs/StatisticsTab';
+import VisualizeTab from './Tabs/VisualizeTab';
 
 const Main = (props) => {
   /* Props */
@@ -14,8 +14,8 @@ const Main = (props) => {
         date={date}/>
     },
     {
-      title: 'Statistics',
-      body: <StatisticsTab 
+      title: 'Visualize',
+      body: <VisualizeTab 
         date={date}/>
     }
   ]  
