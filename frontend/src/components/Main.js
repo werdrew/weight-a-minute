@@ -1,27 +1,29 @@
 import React from 'react';
-import CardWithTabs from './CardWithTabs/CardWithTabs';
-import HomeTab from './Tabs/HomeTab';
-import VisualizeTab from './Tabs/VisualizeTab';
+import CardWithTabsContainer from './CardWithTabs/CardWithTabsContainer';
+import HomeTabContainer from './Tabs/HomeTabContainer';
+import VisualizeTabContainer from './Tabs/VisualizeTabContainer';
 
 const Main = (props) => {
   /* Props */
   const { date } = props;
 
+  console.log(date);
+
   const tabs = [
     {
       title: 'Home',
-      body: <HomeTab 
+      body: <HomeTabContainer 
         date={date}/>
     },
     {
       title: 'Visualize',
-      body: <VisualizeTab 
+      body: <VisualizeTabContainer 
         date={date}/>
     }
   ]  
 
   return (
-    <CardWithTabs
+    <CardWithTabsContainer
       tabs={tabs}/>
   );
 };

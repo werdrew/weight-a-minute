@@ -1,27 +1,26 @@
 import React from 'react';
-import { Container } from 'reactstrap';
+// import { Container } from 'reactstrap';
 import DateSelector from './DateSelector';
-import dateUtil from './dateUtil';
 
 const RangeSelector = (props) => {
-  const { fromDate, toDate, onChangeDayFrom, onChangeMonthFrom,
-    onChangeYearFrom, onChangeDayTo, onChangeMonthTo, onChangeYearTo } = props;
+  const { fromDate, toDate, onChangeFromDay, onChangeFromMonth,
+    onChangeFromYear, onChangeToDay, onChangeToMonth, onChangeToYear } = props;
 
   return (
-    <Container className=''>
+    <>
       <DateSelector
         label='From: '
         date={fromDate}
-        onChangeDay={onChangeDayFrom}
-        onChangeMonth={onChangeMonthFrom}
-        onChangeYear={onChangeYearFrom}/>
+        onChangeDay={onChangeFromDay}
+        onChangeMonth={onChangeFromMonth}
+        onChangeYear={onChangeFromYear}/>
       <DateSelector
         label='To:'
         date={toDate}
-        onChangeDay={onChangeDayTo}
-        onChangeMonth={onChangeMonthTo}
-        onChangeYear={onChangeYearTo}/>
-    </Container>
+        onChangeDay={onChangeToDay}
+        onChangeMonth={onChangeToMonth}
+        onChangeYear={onChangeToYear}/>
+    </>
   );
 
 };

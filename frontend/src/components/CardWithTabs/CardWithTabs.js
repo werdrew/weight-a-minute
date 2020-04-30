@@ -1,58 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Card, CardBody, CardText,
-  Container, Nav, NavItem,
-  NavLink, Row, TabContent,
-  TabPane
+  Card, CardBody, Container, 
+  Nav, Row, TabContent
 } from 'reactstrap';
 
-const CardWithTabs = (props) => {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const toggle = tab => {
-    if (activeTab !== tab) setActiveTab(tab);
-  }
-
-  const tabs = [];
-  const panes = [];
-  props.tabs.forEach((tab, index) => {
-    tabs.push(
-      <NavItem>
-        <NavLink
-          className={activeTab === index ? 'active' : ''}
-          onClick={() => toggle(index)}>
-          {tab.title}
-        </NavLink>
-      </NavItem>
-    );
-
-    panes.push(
-      <TabPane tabId={index}>
-        <Row className="justify-content-center">
-          <CardText>
-            {tab.body}
-          </CardText>
-        </Row>
-      </TabPane>
-    );
-  });
-
-  return (
-    <Container id="Main">
-      <Row className="justify-content-center">
-        <Card className="shadow">
-          <CardBody>
-            <Nav tabs>
-              {tabs}
-            </Nav>
-            <TabContent activeTab={activeTab}>
-              {panes}
-            </TabContent>
-          </CardBody>
-        </Card>
-      </Row>
-    </Container>
-  )
-}
+const CardWithTabs = (props) =>
+  <Container id="Main">
+    <Row className="justify-content-center">
+      <Card className="shadow">
+        <CardBody>
+          <Nav tabs>
+            {props.tabs}
+          </Nav>
+          <TabContent activeTab={props.activeTab}>
+            {props.panes}
+          </TabContent>
+        </CardBody>
+      </Card>
+    </Row>
+  </Container>
 
 export default CardWithTabs;
