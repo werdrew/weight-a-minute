@@ -5,9 +5,12 @@ import * as serviceWorker from './serviceWorker';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const today = new Date();
+const logoPath = "/logo_web.png";
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App date={today} logoPath={logoPath}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

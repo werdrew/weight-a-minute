@@ -2,12 +2,12 @@ import React from 'react';
 import {
   Button, Input, Row
 } from 'reactstrap';
-import DateSelector from '../Date/DateSelector';
+import DateSelectorContainer from '../Date/DateSelectorContainer';
 
 const HomeTab = (props) =>
     <>
       <Row className="justify-content-center tab-pane-row tab-pane-top-row">
-        <DateSelector
+        <DateSelectorContainer
           label='Enter weight for:'
           date={props.date}
           onChangeDay={props.onChangeDay}

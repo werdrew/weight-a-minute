@@ -1,16 +1,16 @@
 import React from 'react';
 // import { Container } from 'reactstrap';
-import DateSelector from './DateSelector';
+import DateSelectorContainer from './DateSelectorContainer';
 
 const RangeSelector = (props) =>
   <>
-    <DateSelector
+    <DateSelectorContainer
       label='From: '
       date={props.fromDate}
       onChangeDay={props.onChangeFromDay}
       onChangeMonth={props.onChangeFromMonth}
       onChangeYear={props.onChangeFromYear}/>
-    <DateSelector
+    <DateSelectorContainer
       label='To:'
       date={props.toDate}
       onChangeDay={props.onChangeToDay}
