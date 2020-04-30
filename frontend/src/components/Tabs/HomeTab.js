@@ -6,7 +6,7 @@ import DateSelector from '../Date/DateSelector';
 
 const HomeTab = (props) =>
     <>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center tab-pane-row tab-pane-top-row">
         <DateSelector
           label='Enter weight for:'
           date={props.date}
@@ -14,7 +14,7 @@ const HomeTab = (props) =>
           onChangeMonth={props.onChangeMonth}
           onChangeYear={props.onChangeYear}/>
       </Row>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center tab-pane-row">
         <Input 
             id="weight"
             value={props.weight === -1 ? '' : props.weight}
@@ -22,10 +22,10 @@ const HomeTab = (props) =>
             valid={props.valid}
             invalid={!props.valid}/>
       </Row>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center tab-pane-row">
         {props.msg && <p className={props.msg === 'Success!' ? 'successMsg' : 'errorMsg'}>{props.msg}</p>}
       </Row>
-      <Row className='btn-row justify-content-center'>
+      <Row className='btn-row justify-content-center tab-pane-row'>
         <Button 
           color="primary"
           disabled={!props.valid}

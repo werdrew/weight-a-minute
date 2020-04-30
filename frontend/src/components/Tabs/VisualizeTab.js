@@ -7,7 +7,7 @@ import RangeSelector from '../Date/RangeSelector';
 
 const VisualizeTab = (props) =>
   <>
-    <Row className="justify-content-center">
+    <Row className="justify-content-center tab-pane-row tab-pane-top-row">
       <RangeSelector
         fromDate={props.fromDate}
         toDate={props.toDate}
@@ -18,7 +18,7 @@ const VisualizeTab = (props) =>
         onChangeToMonth={props.onChangeToMonth}
         onChangeToYear={props.onChangeToYear}/>
     </Row>
-    <Row>
+    <Row className="justify-content-center tab-pane-row">
       <Line
         data={props.lineGraphData}/>
     </Row>

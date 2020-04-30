@@ -104,3 +104,11 @@ p {
 #weight {
   width: 60%;
 }
+
+.tab-pane-top-row {
+  margin-top: 20px;
+}
+
+.tab-pane-row {
+  width: 100%;
+}
