@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5601';
+const BASE_URL = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}`;
 
 const getWeight = async (year, month, day) => {
   const response = await axios.get(BASE_URL + `/${year}/${month}/${day}`)

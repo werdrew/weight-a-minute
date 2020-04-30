@@ -7,7 +7,7 @@ const cors = require('cors');
 app.use(bodyParser.json());
 app.use(cors());
 
-const port = 5601;
+const port = process.env.PORT;
 
 app.listen(port);
 

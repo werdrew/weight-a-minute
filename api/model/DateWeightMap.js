@@ -10,7 +10,8 @@ const CREATE_TABLE = `CREATE TABLE IF NOT EXISTS "date_weight_map" (
 
 class DateWeightMap {
   constructor() {
-    this.db = new sqlite3.Database('db.local');
+    console.log(process.env);
+    this.db = new sqlite3.Database(process.env.DB_PATH);
     this.db.run(CREATE_TABLE);
   }
 

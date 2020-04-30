@@ -18,6 +18,5 @@ I plan on using this application to make a habit of tracking my weight everyday,
 
 * Certain operations will return a success message, even though they don't do anything, e.g. updating or deleting when there isn't a value for a date in the DB
 * Re-factor components to use container pattern or something similar
-* Config
 * Build
 * Write tests
