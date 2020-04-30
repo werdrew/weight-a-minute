@@ -88,13 +88,13 @@ label {
 }
 
 .dateSelector {
-  border-left: 5px solid rgba(126, 222, 91, 0.75);
+  border-right: 5px solid rgba(126, 222, 91, 0.75);
   border-bottom: 5px solid rgba(126, 222, 91, 0.75);
   border-radius: 20px;
   background-color: rgba(91, 192, 222, 0.1);
   padding: 0;
-  margin-bottom: 10px;
-  width: 50%;
+  margin-bottom: 20px;
+  width: 90% !important;
 }
 
 p {

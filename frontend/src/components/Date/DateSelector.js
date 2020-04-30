@@ -3,7 +3,7 @@ import { Container, Row } from 'reactstrap';
 import DropdownContainer from './DropdownContainer';
 
 const DateSelector = (props) =>
-  <Container className='dateSelector'>
+  <Container className='dateSelector shadow'>
     <Row className='justify-content-around'>
       {props.label && <p className='dropdown-label'>{props.label}</p>}
       <Row className='justify-content-center'>
