@@ -8,7 +8,6 @@ const VisualizeTabContainer = (props) => {
   const oneWeekAgo = getWeeksAgo(props.date, { n: 1});
 
   const [data, setData] = useState({});
-  const [granularity, setGranularity] = useState('weekly');
   const [fromDate, setFromDate] = useState(oneWeekAgo);
   const [toDate, setToDate] = useState(props.date);
   const [fromDay, setFromDay] = useState(getDay(oneWeekAgo));

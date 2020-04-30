@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
-  CardText, NavLink, Row,
-  NavItem, TabPane
+  NavLink, Row, NavItem, TabPane
 } from 'reactstrap';
 import CardWithTabs from './CardWithTabs';
 

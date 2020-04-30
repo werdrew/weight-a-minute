@@ -1,7 +1,7 @@
 import React from 'react';
 import Main from './components/Main';
 import Logo from './components/Logo';
-import { Container, Col, Row } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 
 const today = new Date();
 const logoPath = "/logo_web.png";

@@ -25,7 +25,7 @@ const _suffix = day => {
 };
 
 const _numDays = (month, year) => {
-  const leapYear = year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+  const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
   if (month === 'February' && !leapYear) return 28;
   if (month === 'February' && leapYear) return 29;
   if (month in ['April', 'June', 'September', 'November']) return 30;

@@ -97,8 +97,9 @@ const HomeTabContainer = (props) => {
       onChangeMonth={onChangeMonth}
       onChangeYear={onChangeYear}
       onChangeInput={e => setWeight(e.target.value)}
-      weight={weight}
-      valid={isValidWeight(weight)}/>
+      weight={weight || -1}
+      valid={isValidWeight(weight)}
+      msg={msg}/>
   );
 };
 
