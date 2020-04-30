@@ -10,12 +10,53 @@ I plan on using this application to make a habit of tracking my weight everyday,
 * **Extensible**: In case I end up wanting to add more features in the future.
 * **Aesthetic**: Should be pretty enough to use as a browser homepage.
 
-## Running the application
+## Run an instance locally
 
-(placeholder)
+### Pre-requisities
+
+* Node/npm (I have versions 13.12.0 / 6.14.4))
+* Docker (I have version 19.03.8)
+
+### Edit config files
+
+There is a `.env` file in both `api` and `frontend` with provided defaults.
+
+For `api`:
+```
+PORT=5601
+DB_PATH=db.local (the name of the sqlite3 db, will be created in the api root folder)
+```
+
+For `frontend`:
+```
+REACT_APP_API_HOST=localhost (host api is running on)
+REACT_APP_API_PORT=5601 (port api is running on)
+```
+
+Whatever port is used for `PORT`/`REACT_APP_API_HOST` must also be used in two places: the `EXPOSE ${PORT}` directive in `api/Dockerfile` and `services:api:ports` in `docker-compose.yml`.
+
+Additionally, the port the frontend runs on can be changed by adding a flag to the `CMD` directive in `frontend/Dockerfile`, e.g. `CMD ["serve", "-s", "build", "-l", "3000]`. By default, it'll
+run on port 5000, which is reflected in `docker-compose.yml`, so if changed, that'll need to be updated to at `services:frontend:ports`.
+
+### Run it
+
+```
+git clone git@github.com:werdrew/weight-a-minute.git
+cd weight-a-minute
+docker-compose up -d
+```
+
+Access the site at `localhost:5000`
+
+### Set as your browser homepage?
+
+[If you're using Chrome...](https://kb.nmsu.edu/page.php?id=72731)
+
+[If you're using Firefox...](https://www.businessinsider.com/how-to-change-homepage-on-firefox)
 
 ## Known TODOs
 
 * Certain operations will return a success message, even though they don't do anything, e.g. updating or deleting when there isn't a value for a date in the DB
-* Build
+* Visualize tab doesn't update when weight operation is performed on home tab -- add a refresh button
+* Make using the visualize tab easier to use, more tunable; add the to-be-determined aggregations to visualize tab (e.g. max weight in range, net weight change over range etc.)  
 * Write tests
