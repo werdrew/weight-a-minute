@@ -56,7 +56,6 @@ Access the site at `localhost:5000`, or whatever port the frontend is running on
 
 ## Known TODOs
 
-* Lazy load tabs, so data reloads are forced whenever a tab is selected
 * Mount sqlite db in persistent docker volume so it doesn't get overwritten between new image builds
 * More aggregations, finer tuning in visualize tab, more data viz?
 * Write tests, actually use ci!!, stop pushing directly to master :p
