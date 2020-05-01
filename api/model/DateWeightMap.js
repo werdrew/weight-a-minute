@@ -30,18 +30,63 @@ class DateWeightMap {
     });
   }
 
-  async getAllWeight({ from, to }) {
-    const [fromYear, fromMonth, fromDay] = from.split('/');
-    const [toYear, toMonth, toDay] = to.split('/');
-    return new Promise((resolve, reject) => {
-      this.db.all(`SELECT * FROM date_weight_map
+  async getAllWeight({ fromYear, fromMonth, fromDay, toYear, toMonth, toDay }) {
+    let sql = ``;
+    let params = [];
+    const union = 'UNION\n';
+    if (fromYear !== toYear) {
+      const fromSql = `SELECT * FROM date_weight_map
+      WHERE year = ?
+      AND month = ?
+      AND day >= ?
+      ${union}
+      SELECT * FROM date_weight_map
+      WHERE year = ?
+      AND month > ?\n`;
+      const toSql = `SELECT * FROM date_weight_map
+      WHERE year = ?
+      AND month = ?
+      AND day <= ?
+      ${union}
+      SELECT * FROM date_weight_map
+      WHERE year = ?
+      AND month < ?`;
+      sql = fromSql + union + toSql;
+      params = params.concat([
+        fromYear, fromMonth, fromDay,
+        fromYear, fromMonth,
+        toYear, toMonth, toDay,
+        toYear, toMonth
+      ]);
+    }
+    else if (fromMonth !== toMonth) {
+      const fromSql = `SELECT * FROM date_weight_map
+      WHERE year = ?
+      AND month = ?
+      AND day >= ?\n`;
+      const toSql = `SELECT * FROM date_weight_map
+      WHERE year = ?
+      AND month = ?
+      AND day <= ?`;
+      sql = fromSql + union + toSql;
+      params = params.concat([
+        fromYear, fromMonth, fromDay,
+        toYear, toMonth, toDay
+      ]);
+    }
+    else {
+      sql = `SELECT * FROM date_weight_map
       WHERE year >= ? AND year <= ?
       AND month >= ? AND month <= ?
-      AND day >= ? AND day <= ?;`, [
+      AND day >= ? AND day <= ?;`
+      params = params.concat([
         fromYear, toYear,
         fromMonth, toMonth,
         fromDay, toDay
-      ], (err, row) => {
+      ]);
+    };
+    return new Promise((resolve, reject) => {
+      this.db.all(sql, params, (err, row) => {
         if (err) reject (err);
         else resolve(row || { data: []});
       });

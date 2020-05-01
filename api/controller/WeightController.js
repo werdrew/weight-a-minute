@@ -25,7 +25,27 @@ class WeightController {
   async getAllWeight(req, res) {
     const { from, to } = req.query;
     try {
-      const response = await WeightService.getAllWeight({ from, to });
+      const [fromYear, fromMonth, fromDay] = from.split('/');
+      const [toYear, toMonth, toDay] = to.split('/');
+
+      if (fromYear > toYear) {
+        throw new Error(`Invalid dates (bad year params): ${{ from, to }}`)
+      }
+      else if (fromYear === toYear && fromMonth > toMonth) {
+        throw new Error(`Invalid dates (bad month params): ${{ from, to }}`)
+      }
+      else if (fromMonth === toMonth && fromDay > toDay) {
+        throw new Error(`Invalid dates (bad day params): ${{ from, to }}`)
+      };
+      
+      const response = await WeightService.getAllWeight({ 
+        fromYear,
+        fromMonth,
+        fromDay,
+        toYear,
+        toMonth,
+        toDay
+       });
       res.send(response);
     } catch (err) {
       console.error(err);
