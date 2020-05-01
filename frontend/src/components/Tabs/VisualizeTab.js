@@ -19,6 +19,9 @@ const VisualizeTab = (props) =>
         onChangeToYear={props.onChangeToYear}/>
     </Row>
     <Row className="justify-content-center tab-pane-row">
+        {props.msg && <p className={props.msg === 'Success!' ? 'successMsg' : 'errorMsg'}>{props.msg}</p>}
+    </Row>
+    <Row className="justify-content-center tab-pane-row">
       <Line
         data={props.lineGraphData}/>
     </Row>

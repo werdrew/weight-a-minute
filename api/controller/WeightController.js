@@ -29,13 +29,13 @@ class WeightController {
       const [toYear, toMonth, toDay] = to.split('/');
 
       if (fromYear > toYear) {
-        throw new Error(`Invalid dates (bad year params): ${{ from, to }}`)
+        throw `Error: Invalid range. FromYear must be <= ToYear!`;
       }
       else if (fromYear === toYear && fromMonth > toMonth) {
-        throw new Error(`Invalid dates (bad month params): ${{ from, to }}`)
+        throw `Error: Invalid range. FromMonth must be <= ToMonth!`;
       }
       else if (fromMonth === toMonth && fromDay > toDay) {
-        throw new Error(`Invalid dates (bad day params): ${{ from, to }}`)
+        throw `Error: Invalid range. FromDay must be <= FromDay!`;
       };
       
       const response = await WeightService.getAllWeight({ 
@@ -46,10 +46,10 @@ class WeightController {
         toMonth,
         toDay
        });
-      res.send(response);
+      res.send({ rows: response });
     } catch (err) {
       console.error(err);
-      res.send(err);
+      res.send({ rows: [], err });
     }
   }
 
@@ -61,7 +61,7 @@ class WeightController {
       res.send(response);
     } catch (err) {
       console.error(err);
-      res.send(err);
+      res.send({ err: `Error: A weight has already been submitted for this date. Please update instead of submitting.` });
     }
   }
 
@@ -70,10 +70,13 @@ class WeightController {
     const { weight } = req.body;
     try {
       const response = await WeightService.updateWeight({ year, month, day, weight });
+      if (!response.changes) {
+        throw `Error: No changes made. Please submit a weight for this date before trying to update it.`
+      }
       res.send(response);
     } catch (err) {
       console.error(err);
-      res.send(err);
+      res.send({ err });
     }
   }
 
@@ -81,10 +84,13 @@ class WeightController {
     const { year, month, day } = req.params;
     try {
       const response = await WeightService.deleteWeight({ year, month, day });
+      if (!response.changes) {
+        throw `Error: No changes made. Please submit a weight for this date before trying to delete it.`
+      }
       res.send(response);
     } catch (err) {
       console.error(err);
-      res.send(err);
+      res.send({ err });
     }
   }
 }

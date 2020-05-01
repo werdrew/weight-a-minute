@@ -8,7 +8,7 @@ const _monthAsStr = idx => {
     return months[idx];
   }
   catch (error) {
-    console.log(`Error getting month: ${error}`);
+    console.error(`Error getting month: ${error}`);
     return false;
   }
 };

@@ -5,15 +5,6 @@ import HomeTab from './HomeTab';
 
 const isValidWeight = weight => /^\d+(\.\d+)?$/.test(weight);
 
-const handleError = (code, setMsg) => {
-  if (code === 'SQLITE_CONSTRAINT') {
-    setMsg('Error: A weight has already been submitted for this date. Please update instead of submitting.');
-  }
-  else {
-    setMsg('Error: Previously unencountered error: ' + code);
-  }
-}
-
 const HomeTabContainer = (props) => {
     /* State */
     const [day, setDay] = useState(getDay(props.date));
@@ -45,22 +36,29 @@ const HomeTabContainer = (props) => {
   /* Handlers */
   const onSubmit = async ({ year, month, day, weight }) => {
     const response = await addWeight(year, month, day, weight);
-    const code = response.code;
-    if (code) handleError(code, setMsg);
-    else setMsg('Success!');
+    if (response.data.err) {
+      setMsg(response.data.err);
+    }
+    else {
+      setMsg('Success!');
+    }
   };
 
   const onUpdate = async ({ year, month, day, weight }) => {
     const response = await updateWeight(year, month, day, weight);
-    const code = response.code;
-    if (code) handleError(code, setMsg);
-    else setMsg('Success!');
+    if (response.data.err) {
+      setMsg(response.data.err);
+    }
+    else {
+      setMsg('Success!');
+    }
   };
 
   const onDelete = async ({ year, month, day, weight }) => {
     const response = await deleteWeight(year, month, day, weight);
-    const code = response.code;
-    if (code) handleError(code, setMsg);
+    if (response.data.err) {
+      setMsg(response.data.err);
+    }
     else {
       setMsg('Success!');
       setWeight(-1);

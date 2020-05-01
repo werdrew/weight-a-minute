@@ -75,12 +75,14 @@ label {
   padding-top: 10px;
   margin: 0;
   color: green;
+  text-align: center;
 }
 
 .errorMsg {
   padding-top: 10px;
   margin: 0;
   color: red;
+  text-align: center;
 }
 
 .row {
