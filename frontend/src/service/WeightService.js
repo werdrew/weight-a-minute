@@ -9,7 +9,7 @@ const getWeight = async (year, month, day) => {
   return response;
 };
 
-const getAllWeights = async (from, to) => {
+const getAllWeight = async (from, to) => {
   if (!from || !to) {
     const code = `From and to both required but got: ${from}, ${to}`;
     console.error(code);
@@ -27,7 +27,7 @@ const addWeight = async (year, month, day, weight) => {
     })
     .then(res => { return res; })
     .catch(err => { throw err; });
-  return response.data;
+  return response;
 };
 
 const updateWeight = async (year, month, day, weight) => {
@@ -36,19 +36,19 @@ const updateWeight = async (year, month, day, weight) => {
     })
     .then(res => { return res; })
     .catch(err => { throw err; });
-  return response.data;  
+  return response;  
 };
 
 const deleteWeight = async (year, month, day, weight) => {
   const response = await axios.delete(BASE_URL + `/${year}/${month}/${day}`)
     .then(res => { return res; })
     .catch(err => { throw err; });
-  return response.data;  
+  return response;  
 };
 
 export { 
   getWeight, 
-  getAllWeights, 
+  getAllWeight, 
   addWeight, 
   updateWeight, 
   deleteWeight 

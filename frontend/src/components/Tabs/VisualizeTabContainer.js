@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getDay, getMonth, getYear, getWeeksAgo, ymdToDate } from '../Date/dateUtil';
-import { getAllWeights } from '../../service/WeightService';
+import { getDay, getMonth, getMonthAsNum, getYear, getWeeksAgo, ymdToDate } from '../Date/dateUtil';
+import { getAllWeight } from '../../service/WeightService';
 import VisualizeTab from './VisualizeTab';
 
 const VisualizeTabContainer = (props) => {
@@ -16,6 +16,7 @@ const VisualizeTabContainer = (props) => {
   const [toDay, setToDay] = useState(getDay(props.date));
   const [toMonth, setToMonth] = useState(getMonth(props.date));
   const [toYear, setToYear] = useState(getYear(props.date));
+  const [msg, setMsg] = useState('');
 
 /* Effects */
   useEffect(() => {
@@ -27,41 +28,59 @@ const VisualizeTabContainer = (props) => {
     }
 
     async function getData() {
-      const response = await getAllWeights(
+      const response = await getAllWeight(
         `${fromYear}/${fromMonth}/${fromDay}`,
         `${toYear}/${toMonth}/${toDay}`
       );
       const labels = [];
       const weights = [];
-      response.data.forEach(({ year, month, day, weight }) => {
-        labels.push(`${year}-${month}-${day}`);
-        weights.push(weight);
-      });
-      const data = { labels, datasets: [{ 
-        label: 'Weights',
-        fill: false,
-        borderColor: "#7EDE5B",
-        pointRadius: 1,
-        data: weights
-      }]};
-      setData(data);
+      if (response.data.err) {
+        setMsg(response.data.err);
+        setData({});
+      }
+      else {
+          response.data.rows.forEach(({ year, month, day, weight }) => {
+          labels.push(`${year}-${month}-${day}`);
+          weights.push(weight);
+        });
+        const data = { labels, datasets: [{ 
+          label: 'Weights',
+          fill: false,
+          borderColor: "#7EDE5B",
+          pointRadius: 1,
+          data: weights
+        }]};
+        setMsg('');
+        setData(data);
+      };
     };
 
     updateDates();
     getData();
   }, [fromDay, fromMonth, fromYear, toDay, toMonth, toYear]);
 
+  const onChangeFromMonth = (e) => {
+    const monthNum = getMonthAsNum(e);
+    setFromMonth(monthNum);
+  };
+
+  const onChangeToMonth = (e) => {
+    const monthNum = getMonthAsNum(e);
+    setToMonth(monthNum);
+  };
+
   return (   
     <VisualizeTab
       fromDate={fromDate}
       toDate={toDate}
       onChangeFromDay={setFromDay}
-      onChangeFromMonth={setFromMonth}
+      onChangeFromMonth={onChangeFromMonth}
       onChangeFromYear={setFromYear}
       onChangeToDay={setToDay}
-      onChangeToMonth={setToMonth}
+      onChangeToMonth={onChangeToMonth}
       onChangeToYear={setToYear}
-      lineGraphData={data}/>
+      lineGraphData={data}
+      msg={msg}/>
   );
 };
 

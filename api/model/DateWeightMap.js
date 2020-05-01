@@ -88,7 +88,7 @@ class DateWeightMap {
     return new Promise((resolve, reject) => {
       this.db.all(sql, params, (err, row) => {
         if (err) reject (err);
-        else resolve(row || { data: []});
+        else resolve(row || { rows: []});
       });
     });
   }
@@ -101,7 +101,7 @@ class DateWeightMap {
         month,
         day,
         weight
-      ], (err, row) => {
+      ], function(err) {
         if (err) reject(err)
         else resolve();
       });
@@ -117,9 +117,11 @@ class DateWeightMap {
         year,
         month,
         day,
-      ], (err, row) => {
+      ], function(err) {
         if (err) reject(err)
-        else resolve();
+        else {
+          resolve({ changes: this.changes });
+        };
       });
     });
   }
@@ -133,9 +135,9 @@ class DateWeightMap {
         year,
         month,
         day
-      ], (err, row) => {
+      ], function(err, row) {
         if (err) reject(err)
-        else resolve();
+        else resolve({ changes: this.changes });
       });
     });
   }

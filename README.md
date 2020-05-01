@@ -46,7 +46,7 @@ cd weight-a-minute
 docker-compose up -d
 ```
 
-Access the site at `localhost:5000`
+Access the site at `localhost:5000`, or whatever port the frontend is running on.
 
 ### Set as your browser homepage?
 
@@ -56,7 +56,7 @@ Access the site at `localhost:5000`
 
 ## Known TODOs
 
-* Certain operations will return a success message, even though they don't do anything, e.g. updating or deleting when there isn't a value for a date in the DB
-* Visualize tab doesn't update when weight operation is performed on home tab -- add a refresh button
-* Make using the visualize tab easier to use, more tunable; add the to-be-determined aggregations to visualize tab (e.g. max weight in range, net weight change over range etc.)  
-* Write tests
+* Lazy load tabs, so correct data is 
+* Mount sqlite db in persistent docker volume so it doesn't get overwritten between new image builds
+* More aggregations, finer tuning in visualize tab, more data viz?
+* Write tests, actually use ci!!, stop pushing directly to master :p
