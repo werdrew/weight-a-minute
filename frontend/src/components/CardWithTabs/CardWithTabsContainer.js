@@ -28,7 +28,7 @@ const CardWithTabsContainer = (props) => {
     panes.push(
       <TabPane tabId={index} key={`${tab}-${index}-tab-pane`}>
         <Row className="justify-content-center">
-          {tab.body}
+          { activeTab === index ? tab.body : null }
         </Row>
       </TabPane>
     );
