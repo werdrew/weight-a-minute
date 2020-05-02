@@ -3,10 +3,10 @@ const WeightService = require('../service/WeightService');
 
 class WeightController {
   constructor() {
-    app.get('/:year/:month/:day', this.getWeight);
-    app.post('/:year/:month/:day', this.addWeight);
-    app.put('/:year/:month/:day/', this.updateWeight);
-    app.delete('/:year/:month/:day/', this.deleteWeight);
+    app.get('/weight/:year/:month/:day', this.getWeight);
+    app.post('/weight/:year/:month/:day', this.addWeight);
+    app.put('/weight/:year/:month/:day/', this.updateWeight);
+    app.delete('/weight/:year/:month/:day/', this.deleteWeight);
 
     app.get('/weight', this.getAllWeight);
   }

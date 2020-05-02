@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}`;
+const BASE_URL = `http://${process.env.REACT_APP_API_HOST}:${process.env.REACT_APP_API_PORT}/weight`;
 
 const getWeight = async (year, month, day) => {
   const response = await axios.get(BASE_URL + `/${year}/${month}/${day}`)
@@ -15,7 +15,7 @@ const getAllWeight = async (from, to) => {
     console.error(code);
     return { code };
   }
-  const response = await axios.get(BASE_URL + `/weight?from=${from}&to=${to}`)
+  const response = await axios.get(BASE_URL + `?from=${from}&to=${to}`)
     .then(res => { return res; })
     .catch(err => console.log(err));
   return response;
