@@ -19,15 +19,13 @@ I plan on using this application to make a habit of tracking my weight everyday,
 
 ### Edit config files
 
-There is a `.env` file in both `api` and `frontend` with provided defaults.
-
-For `api`:
+`api/.env`:
 ```
-PORT=5601
-DB_PATH=db.local (the name of the sqlite3 db, will be created in the api root folder)
+PORT=5601 (port the backend is running on)
+DB_PATH=db.local (name of the sqlite3 db, will be created in api/data)
 ```
 
-For `frontend`:
+`frontend/.env`:
 ```
 REACT_APP_API_HOST=localhost (host api is running on)
 REACT_APP_API_PORT=5601 (port api is running on)
@@ -41,12 +39,17 @@ run on port 5000, which is reflected in `docker-compose.yml`, so if changed, tha
 ### Run it
 
 ```
-git clone git@github.com:werdrew/weight-a-minute.git
-cd weight-a-minute
-docker-compose up -d
+$ git clone git@github.com:werdrew/weight-a-minute.git
+$ cd weight-a-minute
+$ ./build
+$ docker-compose up -d
 ```
 
-Access the site at `localhost:5000`, or whatever port the frontend is running on.
+`./build` will build the Docker images for the frontend and backend. `docker-compuse up -d` will start the application. Access the site at `localhost:5000`, or whatever port the frontend is running on.
+
+`./build -f` will force the Docker images to be rebuilt if any changes are made to the codebase.
+
+`api/data` is a persistent volume, so that the db doesn't get overwritten between image builds.
 
 ### Set as your browser homepage?
 
@@ -56,6 +59,5 @@ Access the site at `localhost:5000`, or whatever port the frontend is running on
 
 ## Known TODOs
 
-* Mount sqlite db in persistent docker volume so it doesn't get overwritten between new image builds
 * More aggregations, finer tuning in visualize tab, more data viz?
 * Write tests, actually use ci!!, stop pushing directly to master :p

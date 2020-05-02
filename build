@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+function check_exists {
+  path="$1"
+  docker image ls | grep "weight-a-minute-$1"
+  exists=$?
+}
+
+function build {
+  path="$1"
+  echo "BUILDING IMAGE FOR $path:"
+  echo -e "\n"
+  docker build -t "weight-a-minute-$path" -f "$path/Dockerfile" "$path"
+}
+
+while getopts ":f" opt; do
+  case ${opt} in
+    f ) f=true
+      ;;
+  esac;
+done
+
+check_exists api
+if [ "$exists" -eq "1" ] || [ "$f" ]; then
+  build api
+fi
+
+check_exists frontend
+if [ "$exists" -eq "1" ] || [ "$f" ]; then
+  build frontend
+fi

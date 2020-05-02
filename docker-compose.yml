@@ -1,14 +1,16 @@
 version: '3'
 services:
   api:
-    build:
-      context: ./api
+    image: weight-a-minute-api
+    container_name: weight-a-minute-api
     ports:
       - '5601:5601'
     restart: on-failure
+    volumes: 
+      - ./api/data:/usr/local/src/data
   frontend:
-    build:
-      context: ./frontend
+    image: weight-a-minute-frontend
+    container_name: weight-a-minute-frontend
     ports:
       - '5000:5000'
     restart: on-failure
