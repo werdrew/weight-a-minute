@@ -1,0 +1,1 @@
+This folder is a persistent volume that will house the sqlite3 db file.
