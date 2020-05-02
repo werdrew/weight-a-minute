@@ -51,6 +51,26 @@ $ docker-compose up -d
 
 `api/data` is a persistent volume, so that the db doesn't get overwritten between image builds.
 
+### Using make
+
+make should come pre-installed on most systems I think.
+
+Build and run initially:
+```
+$ make build
+$ make run
+```
+
+Rebuild after making changes:
+```
+$ make rebuild
+```
+
+Shut er down:
+```
+$ make kill
+```
+
 ### Set as your browser homepage?
 
 [If you're using Chrome...](https://kb.nmsu.edu/page.php?id=72731)
