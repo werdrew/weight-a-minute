@@ -22,12 +22,12 @@ const HomeTabContainer = (props) => {
       }
   
       async function initWeight() {
-        try {
-          const response = await getWeight(year, month, day);
-          setState(response);
-        } catch (error) {
-          console.error(error);
-        }
+        const response = await getWeight(year, month, day);
+        if (!response) {
+          setMsg('Error: Unable to fetch data.');
+          return;
+        };
+        setState(response);
       }
   
       initWeight();
@@ -56,6 +56,7 @@ const HomeTabContainer = (props) => {
 
   const onDelete = async ({ year, month, day, weight }) => {
     const response = await deleteWeight(year, month, day, weight);
+    console.log(response);
     if (response.data.err) {
       setMsg(response.data.err);
     }

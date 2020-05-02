@@ -29,12 +29,17 @@ const VisualizeTabContainer = (props) => {
 
     async function getData() {
       const response = await getAllWeight(
-        `${fromYear}/${fromMonth}/${fromDay}`,
-        `${toYear}/${toMonth}/${toDay}`
-      );
+          `${fromYear}/${fromMonth}/${fromDay}`,
+          `${toYear}/${toMonth}/${toDay}`
+        );
+      if (!response) {
+        setMsg('Error: Unable to fetch data.');
+        setData({});
+        return;
+      };
       const labels = [];
       const weights = [];
-      if (response.data.err) {
+      if (response.data && response.data.err) {
         setMsg(response.data.err);
         setData({});
       }
