@@ -1,7 +1,7 @@
 # Weight a minute...
 
-<img alt="Home Tab" src="./local/WaM1.png" width="400" height="400"/>
-<img alt="Visualize Tab" src="./local/WaM2.png" width="400" height="400"/>
+<img alt="Home Tab" src="./images/WaM1.png" width="400" height="400"/>
+<img alt="Visualize Tab" src="./images/WaM2.png" width="400" height="400"/>
 
 ## What is this?
 
