@@ -1,5 +1,8 @@
 # Weight a minute...
 
+<img alt="Home Tab" src="./local/WaM1.png" width="400" height="400"/>
+<img alt="Visualize Tab" src="./local/WaM2.png" width="400" height="400"/>
+
 ## What is this?
 
 I plan on using this application to make a habit of tracking my weight everyday, since one of my #QuarantineGoals is to cut the weight I've gained over the last few weeks of the Spring 2020 semester.
