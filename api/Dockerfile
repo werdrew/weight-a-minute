@@ -10,4 +10,5 @@ RUN npm ci --only=production
 COPY . .
 
 EXPOSE 5601
-CMD ["node", "index.js"]
+ENV NODE_ENV production
+ENTRYPOINT ["node", "index.js"]
