@@ -25,17 +25,17 @@ class WeightController {
   async getAllWeight(req, res) {
     const { from, to } = req.query;
     try {
-      const [fromYear, fromMonth, fromDay] = from.split('/');
-      const [toYear, toMonth, toDay] = to.split('/');
+      const [fromYear, fromMonth, fromDay] = from.split('/').map(intStr => parseInt(intStr));
+      const [toYear, toMonth, toDay] = to.split('/').map(intStr => parseInt(intStr));
 
       if (fromYear > toYear) {
-        throw `Error: Invalid range. FromYear must be <= ToYear!`;
+        throw `Error: Invalid range. From year {${fromYear}} must be <= to year {${toYear}}!`;
       }
       else if (fromYear === toYear && fromMonth > toMonth) {
-        throw `Error: Invalid range. FromMonth must be <= ToMonth!`;
+        throw `Error: Invalid range. From month {${fromMonth}} must be <= to month {${toMonth}}!`;
       }
       else if (fromMonth === toMonth && fromDay > toDay) {
-        throw `Error: Invalid range. FromDay must be <= FromDay!`;
+        throw `Error: Invalid range. From day {${fromDay}} must be <= to day {${toDay}}!`;
       };
       
       const response = await WeightService.getAllWeight({ 
