@@ -13,7 +13,7 @@ I plan on using this application to make a habit of tracking my weight everyday,
 * **Extensible**: In case I end up wanting to add more features in the future.
 * **Aesthetic**: Should be pretty enough to use as a browser homepage.
 
-## Run an instance locally
+## Build and run locally
 
 ### Pre-requisities
 
@@ -79,6 +79,22 @@ $ make kill
 [If you're using Chrome...](https://kb.nmsu.edu/page.php?id=72731)
 
 [If you're using Firefox...](https://www.businessinsider.com/how-to-change-homepage-on-firefox)
+
+## Setup development locally
+
+api:
+```
+$ cd frontend
+$ npm run dev
+```
+
+api:
+```
+$ cd api
+$ npm run dev
+```
+
+Feel free to change back-end port in `api/config/.env.development`.
 
 ## Known TODOs
 
